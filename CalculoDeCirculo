@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define pi 3.14159265
+void calcula_circulo(float r, float *circunferencia, float *area){
+    *area = pi*(r*r);
+    *circunferencia = 2*pi*r;
+}
+int main()
+{
+    float r, area, circ;
+    printf("Valor do raio: ");
+    scanf("%f", &r);
+    calcula_circulo(r,&circ,&area);
+    printf("c = %.2f\na = %.2f", circ, area);
+}
