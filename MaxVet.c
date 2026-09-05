@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*5. Implemente a função max_vet, que recebe como parâmetro um vetor de números de ponto
-flutuante (vet) de tamanho n e retorna o maior número armazenado nesse vetor. Essa função deve
-obedecer o protótipo: float max_vet (int n, float * vet);
-Faça também a função main.*/
+/*5. Implemente a funÃ§Ã£o max_vet, que recebe como parÃ¢metro um vetor de nÃºmeros de ponto
+flutuante (vet) de tamanho n e retorna o maior nÃºmero armazenado nesse vetor. Essa funÃ§Ã£o deve
+obedecer o protÃ³tipo: float max_vet (int n, float * vet);
+FaÃ§a tambÃ©m a funÃ§Ã£o main.*/
 float max_vet(int n, float *vet)
 {
     *vet;
