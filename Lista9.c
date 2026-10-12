@@ -6,7 +6,7 @@ typedef struct data {
 } Data;
 
 typedef struct local {
-    char ender[81]; /* endereço do local de provas */
+    char ender[81]; /* endereÃ§o do local de provas */
     int sala; /* numero sala */
 } Local;
 
@@ -72,7 +72,9 @@ void main()
         printf("============================\n");
 
     }
-
-
+    for(i=0; i<n; i++){
+        free(cand[i].loc);
+    }
+    free(cand);
 
 }
