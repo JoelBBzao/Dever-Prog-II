@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+/* EXERCICIO 1*/
 typedef struct data {
     int dia, mes, ano;
 } Data;
@@ -78,3 +78,4 @@ void main()
     free(cand);
 
 }
+/* ----------------------------------------*/
