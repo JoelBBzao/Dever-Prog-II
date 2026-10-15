@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-/* EXERCICIO 1*/
+
 typedef struct data {
     int dia, mes, ano;
 } Data;
@@ -27,55 +27,90 @@ typedef struct candidato {
 void main()
 {
     int n, i;
+    int cont = 0;
     Candidato *cand;
     printf("Quantidade de candidatos: ");
     scanf("%d", &n);
+    int resp, cn, alt;
 
-    cand = (Candidato *) malloc(n * sizeof(Candidato));
-    if(cand == NULL){ printf("Memoria Insuficiente\n");}
-
-    for(i=0; i<n; i++)
+    printf("Selecione uma opcao\n");
+    printf("1- Inserir dados do(s) candidato(s)\n2- Mostrar dados do candidato\n");
+    printf("3- Alterar o local de prova de um candidato\n");
+    scanf("%d", &resp);
+    if(resp==1)
         {
-            printf("====Candidato %d====\n", i+1);
+        cand = (Candidato *) malloc(n * sizeof(Candidato));
+        if(cand == NULL){ printf("Memoria Insuficiente\n");}
 
-            printf("Inscricao: ");
-            scanf("%d", &cand[i].inscr);
+        for(i=0; i<n; i++)
+            {
+                printf("====Candidato %d====\n", i+1);
 
-            printf("Nome: ");
-            scanf(" %80[^\n]", &cand[i].nome);
+                printf("Inscricao: ");
+                scanf("%d", &cand[i].inscr);
 
-            printf("Data de nascimento: ");
-            scanf("%d %d %d", &cand[i].nasc.dia, &cand[i].nasc.mes, &cand[i].nasc.ano);
+                printf("Nome: ");
+                scanf(" %80[^\n]", &cand[i].nome);
 
-            cand[i].loc = (Local *) malloc(sizeof(Local));
-            if(cand[i].loc == NULL){ printf("Memoria insuficiente");}
+                printf("Data de nascimento: ");
+                scanf("%d %d %d", &cand[i].nasc.dia, &cand[i].nasc.mes, &cand[i].nasc.ano);
 
-            printf("Endereco: ");
-            scanf(" %80[^\n]", &cand[i].loc->ender);
-            printf("Sala: ");
-            scanf("%d", &cand[i].loc->sala);
+                cand[i].loc = (Local *) malloc(sizeof(Local));
+                if(cand[i].loc == NULL){ printf("Memoria insuficiente");}
 
-            printf("Nota geral: ");
-            scanf("%f", &cand[i].nt.geral);
-            printf("Nota especifica: ");
-            scanf("%f", &cand[i].nt.especifica);
+                printf("Endereco: ");
+                scanf(" %80[^\n]", &cand[i].loc->ender);
+                printf("Sala: ");
+                scanf("%d", &cand[i].loc->sala);
+
+                printf("Nota geral: ");
+                scanf("%f", &cand[i].nt.geral);
+                printf("Nota especifica: ");
+                scanf("%f", &cand[i].nt.especifica);
+                cont++;
+            }
         }
-    printf("====Candidatos Inscritos====\n");
-    for(i=0; i<n; i++){
-        printf("-Candidato %d-\n", i+1);
-        printf("Inscricao: %d\n", cand[i].inscr);
-        printf("Nome: %s\n", cand[i].nome);
-        printf("Data de nascimento: %d/%d/%d\n", cand[i].nasc.dia, cand[i].nasc.mes, cand[i].nasc.ano);
-        printf("Local de prova: %s\nSala: %d\n", cand[i].loc->ender, cand[i].loc->sala);
-        printf("Nota da prova geral: %.2f\n", cand[i].nt.geral);
-        printf("Nota da prova especifica: %.2f\n", cand[i].nt.especifica);
-        printf("============================\n");
-
+    if(resp==2){
+        if(cont==0){printf("Nenhum candidato encontrado");}
+        else{
+            printf("====Candidatos Inscritos====\n");
+            for(i=0; i<n; i++){
+                printf("-Candidato %d-\n", i+1);
+                printf("Inscricao: %d\n", cand[i].inscr);
+                printf("Nome: %s\n", cand[i].nome);
+                printf("Data de nascimento: %d/%d/%d\n", cand[i].nasc.dia, cand[i].nasc.mes, cand[i].nasc.ano);
+                printf("Local de prova: %s\nSala: %d\n", cand[i].loc->ender, cand[i].loc->sala);
+                printf("Nota da prova geral: %.2f\n", cand[i].nt.geral);
+                printf("Nota da prova especifica: %.2f\n", cand[i].nt.especifica);
+                printf("============================\n");
+            } }
     }
-    for(i=0; i<n; i++){
-        free(cand[i].loc);
-    }
-    free(cand);
+    if(resp==3)
+        {
+            if(cont==0){printf("Impossivel alterar o local de prova, motivo: Nenhum candidato encontrado");}
+            else{
+                printf("Qual candidato tera seu local alterado?\n");
+                scanf("%d", &cn);
+                printf("1- Alterar o endereco\n2- Alterar a sala\n3- Alterar os dois\n");
+                scanf("%d", &alt);
+                if(alt==1)
+                    {
+                        printf("Insira o novo endereco: ");
+                        scanf(" %80[^\n]", cand[cn].loc->ender);
+                    }
+                if(alt==2)
+                    {
+                        printf("Insira a nova sala: ");
+                        scanf("%d", cand[cn].loc->sala);
+                    }
+                if(alt==3)
+                    {
+                        printf("Insira o novo endereco: ");
+                        scanf(" %80[\n]", cand[cn].loc->ender);
+                        printf("Insira a nova sala: ");
+                        scanf("%d", cand[cn].loc->sala);
+                }
+            }
 
+        }
 }
-/* ----------------------------------------*/
