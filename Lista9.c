@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+/* EXERCICIO 1*/
 typedef struct data {
     int dia, mes, ano;
 } Data;
@@ -34,8 +34,8 @@ void main()
     int resp, cn, alt;
 
     printf("Selecione uma opcao\n");
-    printf("1- Inserir dados do(s) candidato(s)\n2- Mostrar dados do candidato\n");
-    printf("3- Alterar o local de prova de um candidato\n");
+    printf("1- Inserir dados do(s) candidato(s)\n2- Mostrar dados do candidato\n"); /* Questão 1b)*/
+    printf("3- Alterar o local de prova de um candidato\n"); /* Questão 1c)*/
     scanf("%d", &resp);
     if(resp==1)
         {
@@ -85,12 +85,13 @@ void main()
                 printf("============================\n");
             } }
     }
-    if(resp==3)
+    if(resp==3) /* Questão 1c)*/
         {
             if(cont==0){printf("Impossivel alterar o local de prova, motivo: Nenhum candidato encontrado");}
             else{
                 printf("Qual candidato tera seu local alterado?\n");
                 scanf("%d", &cn);
+                cn = cn-1;
                 printf("1- Alterar o endereco\n2- Alterar a sala\n3- Alterar os dois\n");
                 scanf("%d", &alt);
                 if(alt==1)
@@ -114,3 +115,4 @@ void main()
 
         }
 }
+/*=============================================================*/
