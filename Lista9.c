@@ -116,3 +116,8 @@ void main()
         }
 }
 /*=============================================================*/
+/* EXERCICIO 2*/
+2)a) O erro está na linha 21, p_dt2 precisa do asterisco para indicar ponteiro. *p_dt2
+2)b) 5 (março) 
+/*=============================================================*/
+/* EXERCICIO 3*/
