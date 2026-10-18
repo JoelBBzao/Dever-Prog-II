@@ -198,4 +198,26 @@ int main() {
     relatorio(pessoas, numAssalariados);
 }
 /*=============================================================*/
-
+/*EXERCÍCIO 4*/
+/*4a)*/
+void atribui(char **nomes, int indice, char *nome)
+    {
+        strcpy(nomes[indice], nome);
+    }
+/*4b)*/
+char * get_sobrenome(char *nome)
+{
+        int fim;
+        fim = strlen(nome)-1;
+        while(fim >=0 && nome[fim] == ' ')
+            {fim--;}
+        int j = fim;
+        while(nome[j] != ' ')
+            {j--;}
+        return nome+j+1;
+}
+/*4c)*/
+aparecerá 0
+/*4d)*/
+aparecerá a
+/*=============================================================*/
