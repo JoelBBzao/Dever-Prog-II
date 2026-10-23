@@ -221,3 +221,27 @@ aparecerá 0
 /*4d)*/
 aparecerá a
 /*=============================================================*/
+/*EXERCICIO 5*/
+/*5A)*/Aluno ** alocaAlunos(int n)
+{
+    int i;
+    Aluno **alunos = (Aluno **) malloc(n * sizeof(Aluno *));
+    if(alunos==NULL){printf("Memoria insuficiente\n"); exit(1);}
+    for(i=0; i<n; i++)
+        {
+            alunos[i]= (Aluno *) malloc(sizeof(Aluno));
+            if(alunos[i]==NULL){printf("Memoria Insuficiente\n");}
+            alunos[i]->end = (Endereco *) malloc(sizeof(Endereco));
+            if(alunos[i]->end==NULL){printf("Memoria Insuficiente\n");}
+        }
+/*5B)*/void atribui(Aluno ** a, int indice, int matricula, char *nome, float nota1, float nota2, float nota3, char *nomeRua, int numero)
+{
+    a[indice]->mat = matricula;
+    strcpy(a[indice]->nome, nome);
+    a[indice]->nota.p1 = nota1;
+    a[indice]->nota.p2 = nota2;
+    a[indice]->nota.p3 = nota3;
+    strcpy(a[indice]->end->rua, nomeRua);
+    a[indice]->end->numero = numero;
+}
+/*=============================================================*/
