@@ -245,3 +245,39 @@ aparecerá a
     a[indice]->end->numero = numero;
 }
 /*=============================================================*/
+/*EXERCICIO 6*/
+Pessoa * busca(int n, Pessoa** vet, int codigo) {
+    int ini = 0;
+    int fim = n-1;
+    while(ini <= fim){
+        int meio = (ini+fim)/2;
+        if(codigo < vet[meio]->codigo)
+            {fim = meio-1;}
+        else if(codigo > vet[meio]->codigo)
+            {ini = meio+1;}
+        else
+            {return vet[meio];}
+    }
+    return NULL;
+}
+int main(){
+    Pessoa** pessoas;
+    int n = 2;
+    int i;
+    pessoas = (Pessoa**) malloc(n* sizeof(Pessoa*));
+    for(i=0; i<n; i++){
+        pessoas[i] = (Pessoa *) malloc(sizeof(Pessoa));
+    }
+    pessoas[0]->codigo = 1;
+    strcpy(pessoas[0]->nome, "Caua");
+    pessoas[1]->codigo = 2;
+    strcpy(pessoas[1]->nome, "Caio");
+    Pessoa *resultado = busca(n, pessoas, 1);
+    if(resultado != NULL){
+        printf("Pessoa encontrada: %s\n", resultado->nome);
+    } else {
+        printf("Pessoa nao encontrada.\n");
+    }
+    free(pessoas);
+}
+/*=============================================================*/
