@@ -281,3 +281,28 @@ int main(){
     free(pessoas);
 }
 /*=============================================================*/
+/*EXERCICIO 7*/
+int compara(Prova *a, Prova *b){
+    float somaA = 0, somaB = 0;
+    somaA = a->q1 + a->q2 + a->q3 + a->q4;
+    somaB = b->q1 + b->q2 + b->q3 + b->q4;
+    if(somaA == somaB){
+            if(strcmp(a->a.nome, b->a.nome) < 0){
+                return 0;
+            }
+            else{
+                return 1;
+            }
+        }
+    else if(somaA < somaB){
+        return 1;
+    }
+    return 0;
+}
+
+void troca(Prova **a, Prova **b){
+    Prova *tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+/*=============================================================*/
