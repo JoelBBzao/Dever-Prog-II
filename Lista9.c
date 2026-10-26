@@ -306,3 +306,24 @@ void troca(Prova **a, Prova **b){
     *b = tmp;
 }
 /*=============================================================*/
+/*EXERCICIO 8*/
+Compromisso* busca(int n, Compromisso** vet, int d, int m, int a){
+int ini = 0;
+    int fim = n-1;
+    while(ini <= fim){
+        int meio = (ini+fim)/2;
+        if(a < vet[meio]->dta.aa || (a== vet[meio]->dta.aa && m < vet[meio]->dta.mm)
+        || (a==vet[meio]->dta.aa && m==vet[meio]->dta.mm && d < vet[meio]->dta.dd)){
+            fim = meio-1;
+        }
+        else if(a > vet[meio]->dta.aa || (a== vet[meio]->dta.aa && m > vet[meio]->dta.mm)
+        || (a==vet[meio]->dta.aa && m==vet[meio]->dta.mm && d > vet[meio]->dta.dd)){
+            ini = meio+1;
+        }
+        else{
+            return vet[meio];
+                }
+    }
+    return NULL;
+}
+/*=============================================================*/
