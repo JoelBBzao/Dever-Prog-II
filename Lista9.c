@@ -327,3 +327,29 @@ int ini = 0;
     return NULL;
 }
 /*=============================================================*/
+/*EXERCICIO 9*/
+void main(){
+    int tam;
+    int i;
+    printf("Alunos na turma: ");
+    scanf("%d", &tam);
+    ALUNO *turma = (ALUNO*) malloc(tam * sizeof(ALUNO));
+    if(turma==NULL){
+        printf("Memoria insuficiente\n");
+        exit(1);
+    }
+    for(i=0; i<tam; i++){
+        printf("Nome do %d aluno: ", i+1);
+        scanf(" %80[^\n]", turma[i].nome);
+        printf("Media do %d aluno: ", i+1);
+        scanf("%f", &turma[i].media);
+    }
+    ordena(turma, tam);
+
+    for(i=0; i<tam; i++){
+        printf("%f\n", turma[i].media);
+    }
+    free(turma);
+}
+/*=============================================================*/
+/*EXERCICIO 10*/
