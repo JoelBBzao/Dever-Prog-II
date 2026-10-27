@@ -353,3 +353,30 @@ void main(){
 }
 /*=============================================================*/
 /*EXERCICIO 10*/
+void le(ALUNO *a){
+    for(int i=0; i<MAX; i++){
+        printf(" Digite o nome do aluno %d: ", i+1);
+        scanf(" %80[^\n]", a[i].nome);
+        printf(" Digite a media do aluno %d: ", i+1);
+        scanf("%f", &a[i].media);
+    }
+    while(getchar()!='\n');
+}
+void imprime(ALUNO *a){
+    for(int i=0; i<MAX; i++){
+        printf(" Aluno: %s, Media: %.2f\n", a[i].nome, a[i].media);
+    }
+}
+void ordena_medias(ALUNO *a){
+    int fim = MAX-1;
+    for(int i=0; i<MAX; i++){
+        for(int j=0; j<fim; j++){
+            if(a[j].media>a[j+1].media){
+                ALUNO temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+            }
+        }
+        fim--;
+    }
+}
