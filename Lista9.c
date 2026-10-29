@@ -380,3 +380,94 @@ void ordena_medias(ALUNO *a){
         fim--;
     }
 }
+
+/*=============================================================*/
+/*EXERCICIO 11*/
+/*11a)*/
+Aluno* fillAluno(){
+    int i;
+    Aluno * a = (Aluno*) malloc(sizeof(Aluno));
+    if(a==NULL){printf("Memoria Insuficiente\n"); exit(1);}
+    printf("Matricula do aluno: ");
+    scanf("%d", &a->matricula);
+    printf("Nome do aluno: ");
+    scanf(" %99[^\n]", a->nome);
+    a->vNotas = (float*) malloc(5*sizeof(float));
+    if(a->vNotas == NULL){printf("Memoria Insuficiente\n"); exit(1);}
+    for(i=0; i<5; i++){
+        printf("Nota %d: ", i+1);
+        scanf("%f", &a->vNotas[i]);
+    }
+    return a;
+}
+/*11b)*/
+Materia * fillMateria(int numAlunos){
+    int i;
+    Materia *materia = (Materia*) malloc(sizeof(Materia));
+    if(materia == NULL){printf("Memoria Insuficiente\n"); exit(1);}
+    materia->nAlunos = numAlunos;
+    materia->V = (Aluno*) malloc(numAlunos * sizeof(Aluno));
+    for(i=0; i<numAlunos; i++){
+        Aluno *temp = fillAluno();
+        materia->V[i] = *temp;
+        free(temp);
+    }
+    return materia;
+}
+/*11c)*/
+void mediaMateria(Materia *m1){
+    int i;
+    float soma = 0.0;
+    for(i=0; i<5; i++){
+        for(int j=0; j<m1->nAlunos; j++){
+            soma = soma + m1->V[j].vNotas[i];
+        }
+        soma = soma/(m1->nAlunos);
+        m1->media[i] = soma;
+        soma = 0.0;
+    }
+}
+/*11d)*/
+void mostraMateria(Materia *m1){
+    int i;
+    for(i=0; i<m1->nAlunos; i++){
+        printf("==========\n");
+        printf("Nome: %s\n", m1->V[i].nome);
+        printf("Matricula: %d\n", m1->V[i].matricula);
+        printf("Notas: ");
+        for(int j=0; j<5; j++){
+            if(j==4){
+                printf("%.2f", m1->V[i].vNotas[j]);
+            }
+            else{
+            printf("%.2f, ", m1->V[i].vNotas[j]);
+            }
+        }
+        printf("\n");
+    }
+}
+/*11e)*/
+void main(){
+    int i;
+    int numAlunos;
+    Materia *mate;
+    printf("Insira o numero de alunos: ");
+    scanf("%d", &numAlunos);
+    mate = fillMateria(numAlunos);
+    mediaMateria(mate);
+    printf("--Medias--\n");
+    for(i=0; i<5; i++){
+        printf("%do media: %f\n", i+1, mate->media[i]);
+    }
+    mostraMateria(mate);
+    
+    for (i=0;i<numAlunos; i++){
+        free(mate->V[i].vNotas);            
+        }
+    }
+    free(mate->V);
+    free(mate);
+}
+/*=============================================================*/
+/*EXERCICIO 12*/
+/*12a)*/
