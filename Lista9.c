@@ -1,6 +1,43 @@
 #include <stdlib.h>
 #include <stdio.h>
 /* EXERCICIO 1*/
+/*1a)*/
+void main(){
+    int numCand, i;
+    Candidato *cand;
+    printf("Numero de candidatos: ");
+    scanf("%d", &numCand);
+    cand = (Candidato *) malloc(n * sizeof(Candidato));
+        if(cand == NULL){ printf("Memoria Insuficiente\n");}
+        for(i=0; i<n; i++){
+                printf("====Candidato %d====\n", i+1);
+
+                printf("Inscricao: ");
+                scanf("%d", &cand[i].inscr);
+
+                printf("Nome: ");
+                scanf(" %80[^\n]", &cand[i].nome);
+
+                printf("Data de nascimento: ");
+                scanf("%d %d %d", &cand[i].nasc.dia, &cand[i].nasc.mes, &cand[i].nasc.ano);
+
+                cand[i].loc = (Local *) malloc(sizeof(Local));
+                if(cand[i].loc == NULL){ printf("Memoria insuficiente"); exit(1);}
+
+                printf("Endereco: ");
+                scanf(" %80[^\n]", &cand[i].loc->ender);
+                printf("Sala: ");
+                scanf("%d", &cand[i].loc->sala);
+
+                printf("Nota geral: ");
+                scanf("%f", &cand[i].nt.geral);
+                printf("Nota especifica: ");
+                scanf("%f", &cand[i].nt.especifica);
+            }
+        }    
+    
+}
+/*1b)*/
 
 /*=============================================================*/
 /* EXERCICIO 2*/
