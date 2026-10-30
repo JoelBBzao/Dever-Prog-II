@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 typedef struct data {
     int dia, mes, ano;
 } Data;
@@ -28,17 +30,22 @@ void main()
     Candidato *cand;
     printf("Quantidade de candidatos: ");
     scanf("%d", &n);
-    int resp, cn, alt;
 
+    int resp, cn, alt;
+    cand = (Candidato *) malloc(n * sizeof(Candidato));
+        if(cand == NULL){ printf("Memoria Insuficiente\n"); exit(1);}
+
+    do{
     printf("Selecione uma opcao\n");
     printf("1- Inserir dados do(s) candidato(s)\n2- Mostrar dados do candidato\n"); /* Questão 1b)*/
     printf("3- Alterar o local de prova de um candidato\n"); /* Questão 1c)*/
     scanf("%d", &resp);
-    if(resp==1)
-        {
-        cand = (Candidato *) malloc(n * sizeof(Candidato));
-        if(cand == NULL){ printf("Memoria Insuficiente\n");}
 
+    if(resp==1){
+        if(cont>0){
+            printf("Candidato(s) ja inseridos\n");
+        }
+        else{
         for(i=0; i<n; i++)
             {
                 printf("====Candidato %d====\n", i+1);
@@ -53,7 +60,7 @@ void main()
                 scanf("%d %d %d", &cand[i].nasc.dia, &cand[i].nasc.mes, &cand[i].nasc.ano);
 
                 cand[i].loc = (Local *) malloc(sizeof(Local));
-                if(cand[i].loc == NULL){ printf("Memoria insuficiente");}
+                if(cand[i].loc == NULL){ printf("Memoria insuficiente"); exit(1);}
 
                 printf("Endereco: ");
                 scanf(" %80[^\n]", &cand[i].loc->ender);
@@ -67,8 +74,9 @@ void main()
                 cont++;
             }
         }
+        }
     if(resp==2){
-        if(cont==0){printf("Nenhum candidato encontrado");}
+        if(cont==0){printf("Nenhum candidato encontrado\n");}
         else{
             printf("====Candidatos Inscritos====\n");
             for(i=0; i<n; i++){
@@ -94,21 +102,22 @@ void main()
                 if(alt==1)
                     {
                         printf("Insira o novo endereco: ");
-                        scanf(" %80[^\n]", cand[cn].loc->ender);
+                        scanf(" %80[^\n]", &cand[cn].loc->ender);
                     }
                 if(alt==2)
                     {
                         printf("Insira a nova sala: ");
-                        scanf("%d", cand[cn].loc->sala);
+                        scanf("%d", &cand[cn].loc->sala);
                     }
                 if(alt==3)
                     {
                         printf("Insira o novo endereco: ");
-                        scanf(" %80[\n]", cand[cn].loc->ender);
+                        scanf(" %80[^\n]", &cand[cn].loc->ender);
                         printf("Insira a nova sala: ");
-                        scanf("%d", cand[cn].loc->sala);
+                        scanf("%d", &cand[cn].loc->sala);
                 }
             }
 
         }
+    }while(resp!=0);
 }
