@@ -3,10 +3,10 @@
 /* EXERCICIO 1*/
 /*1a)*/
 void main(){
-    int numCand, i;
+    int n, i;
     Candidato *cand;
     printf("Numero de candidatos: ");
-    scanf("%d", &numCand);
+    scanf("%d", &n);
     cand = (Candidato *) malloc(n * sizeof(Candidato));
         if(cand == NULL){ printf("Memoria Insuficiente\n");}
         for(i=0; i<n; i++){
@@ -38,31 +38,90 @@ void main(){
     
 }
 /*1b)*/
+ printf("1- Inserir dados do(s) candidato(s)\n2- Mostrar dados do candidato\n");
+ if(resp==1)
+        {
+        for(i=0; i<n; i++)
+            {
+                printf("====Candidato %d====\n", i+1);
 
+                printf("Inscricao: ");
+                scanf("%d", &cand[i].inscr);
+
+                printf("Nome: ");
+                scanf(" %80[^\n]", &cand[i].nome);
+
+                printf("Data de nascimento: ");
+                scanf("%d %d %d", &cand[i].nasc.dia, &cand[i].nasc.mes, &cand[i].nasc.ano);
+
+                cand[i].loc = (Local *) malloc(sizeof(Local));
+                if(cand[i].loc == NULL){ printf("Memoria insuficiente");}
+
+                printf("Endereco: ");
+                scanf(" %80[^\n]", &cand[i].loc->ender);
+                printf("Sala: ");
+                scanf("%d", &cand[i].loc->sala);
+
+                printf("Nota geral: ");
+                scanf("%f", &cand[i].nt.geral);
+                printf("Nota especifica: ");
+                scanf("%f", &cand[i].nt.especifica);
+                cont++;
+            }
+        }
+    if(resp==2){
+        if(cont==0){printf("Nenhum candidato encontrado");}
+        else{
+            printf("====Candidatos Inscritos====\n");
+            for(i=0; i<n; i++){
+                printf("-Candidato %d-\n", i+1);
+                printf("Inscricao: %d\n", cand[i].inscr);
+                printf("Nome: %s\n", cand[i].nome);
+                printf("Data de nascimento: %d/%d/%d\n", cand[i].nasc.dia, cand[i].nasc.mes, cand[i].nasc.ano);
+                printf("Local de prova: %s\nSala: %d\n", cand[i].loc->ender, cand[i].loc->sala);
+                printf("Nota da prova geral: %.2f\n", cand[i].nt.geral);
+                printf("Nota da prova especifica: %.2f\n", cand[i].nt.especifica);
+                printf("============================\n");
+            } }
+    }
+/*1c)*/
+ if(resp==3)
+        {
+            if(cont==0){printf("Impossivel alterar o local de prova, motivo: Nenhum candidato encontrado");}
+            else{
+                printf("Qual candidato tera seu local alterado?\n");
+                scanf("%d", &cn);
+                cn = cn-1;
+                printf("1- Alterar o endereco\n2- Alterar a sala\n3- Alterar os dois\n");
+                scanf("%d", &alt);
+                if(alt==1)
+                    {
+                        printf("Insira o novo endereco: ");
+                        scanf(" %80[^\n]", &cand[cn].loc->ender);
+                    }
+                if(alt==2)
+                    {
+                        printf("Insira a nova sala: ");
+                        scanf("%d", &cand[cn].loc->sala);
+                    }
+                if(alt==3)
+                    {
+                        printf("Insira o novo endereco: ");
+                        scanf(" %80[^\n]", &cand[cn].loc->ender);
+                        printf("Insira a nova sala: ");
+                        scanf("%d", &cand[cn].loc->sala);
+                }
+            }
+
+        }
 /*=============================================================*/
 /* EXERCICIO 2*/
 2)a) O erro está na linha 21, p_dt2 precisa do asterisco para indicar ponteiro. *p_dt2
 2)b) 5 (março) 
 /*=============================================================*/
 /* EXERCICIO 3*/
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-
-char * estado[27] =
-{"AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MG","MS","MT","PA",
-"PB","PE","PI","PR","RJ","RN","RO","RR","RS","SC","SE","SP","TO"};
-typedef struct assalariados {
-    char nome[51];
-    char sexo;
-    int idade;
-    float salario;
-    char estado[3];
-} Assalariados;
-void relatorio(Assalariados ** ptr, int numAssalariados);
-void imprime(Assalariados ** ptr, int numAssalariados);
-Assalariados * cadastra(char *nome, char sexo, int idade, float salario, char *estado) /*Questão 3a)*/
+/*3a)*/
+Assalariados * cadastra(char *nome, char sexo, int idade, float salario, char *estado)
 {
     Assalariados *novo = (Assalariados *) malloc(sizeof(Assalariados));
         if(novo== NULL){printf("Memoria insuficiente\n"); exit(1);}
@@ -73,7 +132,8 @@ Assalariados * cadastra(char *nome, char sexo, int idade, float salario, char *e
         strcpy(novo->estado, estado);
         return novo;
 }
-void imprime(Assalariados **ptr, int numAssalariados) /*Questão 3b)*/
+/*3b)*/
+void imprime(Assalariados **ptr, int numAssalariados)
     {
         int i;
         for(i=0; i<numAssalariados; i++)
@@ -88,7 +148,8 @@ void imprime(Assalariados **ptr, int numAssalariados) /*Questão 3b)*/
             }
 
     }
-void relatorio(Assalariados ** ptr, int numAssalariados) /*Questão 3c)*/
+/*3c)*/
+void relatorio(Assalariados ** ptr, int numAssalariados)
     {
         int cont = 0;
         int i, j;
@@ -111,16 +172,6 @@ void relatorio(Assalariados ** ptr, int numAssalariados) /*Questão 3c)*/
 
             }
     }
-int main() {
-    Assalariados **pessoas;
-    int numAssalariados=3;
-    pessoas = (Assalariados **) malloc (numAssalariados * sizeof(Assalariados *));
-    pessoas[0] = cadastra("Fulano de tal", 'M',45,1500.00, "RJ");
-    pessoas[1] = cadastra("Ciclano", 'M',50,2500.00, "RS");
-    pessoas[2] = cadastra("Beltrano", 'M',42,500.00, "RS");
-    imprime(pessoas, numAssalariados);
-    relatorio(pessoas, numAssalariados);
-}
 /*=============================================================*/
 /*EXERCÍCIO 4*/
 /*4a)*/
@@ -146,7 +197,8 @@ aparecerá 0
 aparecerá a
 /*=============================================================*/
 /*EXERCICIO 5*/
-/*5A)*/Aluno ** alocaAlunos(int n)
+/*5A)*/
+Aluno ** alocaAlunos(int n)
 {
     int i;
     Aluno **alunos = (Aluno **) malloc(n * sizeof(Aluno *));
@@ -158,7 +210,8 @@ aparecerá a
             alunos[i]->end = (Endereco *) malloc(sizeof(Endereco));
             if(alunos[i]->end==NULL){printf("Memoria Insuficiente\n");}
         }
-/*5B)*/void atribui(Aluno ** a, int indice, int matricula, char *nome, float nota1, float nota2, float nota3, char *nomeRua, int numero)
+/*5B)*/
+void atribui(Aluno ** a, int indice, int matricula, char *nome, float nota1, float nota2, float nota3, char *nomeRua, int numero)
 {
     a[indice]->mat = matricula;
     strcpy(a[indice]->nome, nome);
