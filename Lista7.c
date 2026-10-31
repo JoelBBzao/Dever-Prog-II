@@ -51,4 +51,33 @@ void main(){
     int *vetor = iniciarVetor(n);
     imprime(vetor, n);
 }
+/*=============================================================*/
+/*EXERCICIO 4*/
+char *iniciaAlfa(char alf[], int n){
+    int i;
+    for(i=0; i<n; i++){
+        alf[i] = 'a' + i;
+    }
+}
 
+void imprime(char alf[], int n){
+    printf("{");
+    for(int i =0; i<n; i++){
+        if(i == n-1){
+            printf("%c}", alf[i]);
+        }
+        else{
+            printf("%c, ", alf[i]);
+        }
+    }
+    printf("\n");
+}
+
+int main(){
+    char alfabeto[MAX];
+    iniciaAlfa(alfabeto, MAX);
+    imprime(alfabeto, MAX);
+    return 0;
+}
+/*=============================================================*/
+/*EXERCICIO 5*/
