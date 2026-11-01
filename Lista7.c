@@ -81,3 +81,31 @@ int main(){
 }
 /*=============================================================*/
 /*EXERCICIO 5*/
+int main(){
+    char linha[81];
+    char cript[81];
+    int j = 0;
+    printf("Escreva a frase:\n");
+    scanf(" %80[^\n]", &linha);
+    for(int i=0; i<strlen(linha); i++){
+        if(linha[i] == ' '){
+            continue;
+        }
+        else{
+            cript[j] = linha[i];
+            j++;
+        }
+
+    }
+    cript[j] = '\0';
+    j=1;
+    for(int i=0; i<strlen(cript); i++){
+        cript[i] += j;
+        j++;
+        if(j==6){j = 1;}
+    }
+
+    printf("%s", cript);
+
+}
+/*=============================================================*/
