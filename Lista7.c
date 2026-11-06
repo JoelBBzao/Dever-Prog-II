@@ -109,3 +109,23 @@ int main(){
 
 }
 /*=============================================================*/
+/*EXERCICIO 6*/
+Será impresso "Caua"
+Digitei "Caua"
+strlen(texto) = 4
+no for(i=0; i<tam; i++) de "Caua"
+temp = texto[i], ou seja, temp = texto[0]; =>C
+texto[0] = texto[4-1-0] => texto[0] = texto[3]
+texto[3] = temp; A string texto após essas alterações ficará "aauC"
+
+temp = a
+texto[1] = texto[2]
+texto[2] = temp; "auaC"
+
+temp = a
+texto[2] = texto[1]
+texto[1] = temp; "aauC"
+
+temp = C
+texto[3] = texto[1]
+texto[0] = temp; "Caua"
