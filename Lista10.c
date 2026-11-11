@@ -60,3 +60,32 @@ float media(char* mat, char* nome_arquivo){
 }
 /*=============================================================*/
 /*EXERCICIO 4*/
+int main(){
+    char arqNome[100];
+    printf("Insira o nome do arquivo: ");
+    scanf(" %99[^\n]", arqNome);
+    FILE* arq;
+    arq = fopen(arqNome, "r");
+    if(arq==NULL){printf("ERRO"); exit(1);}
+
+    FILE* arq2 = fopen("arqRefinado.c", "w");
+    if(arq2==NULL){printf("ERRO"); exit(1);}
+
+    char linha[256];
+    while(fgets(linha, sizeof linha, arq)!=NULL){
+        int comentario = 0;
+        for(int i = 0; linha[i] != '\0'; i++){
+            if(linha[i] == '/' && linha[i+1] == '/'){
+                linha[i] = '\n';
+                linha[i+1] = '\0';
+                break;}
+        }
+        fputs(linha, arq2);
+    }
+
+    fclose(arq);
+    fclose(arq2);
+    return 0;
+}
+/*=============================================================*/
+/*EXERCICIO 5*/
