@@ -20,3 +20,22 @@ void carrega (int n, Funcionario** vet, char* arquivo){
 }
 /*=============================================================*/
 /*EXERCICIO 2*/
+float busca(char* arquivo, char* matricula){
+    FILE *arq;
+    char linha[256];
+    char mat[50];
+    float nota;
+    arq = fopen(arquivo, "r");
+    if(arq==NULL){printf("ERRO"); exit(1);}
+    while(fgets(linha, sizeof linha, arq)!=NULL){
+        if(sscanf(linha, "%s %f", mat, &nota)==2){
+            if(strcmp(mat, matricula)==0){
+                return nota;
+            }
+        }
+    }
+    fclose(arq);
+    return nota = -1.0;
+}
+/*=============================================================*/
+/*EXERCICIO 3*/
