@@ -89,3 +89,38 @@ int main(){
 }
 /*=============================================================*/
 /*EXERCICIO 5*/
+int main(){
+    char nomeArq[100];
+    char linha[256];
+    int i , nElem = 0;
+    int lidos = 0;
+    float media =0;
+
+    printf("Insira o nome do arquivo: ");
+    scanf(" %99[^\n]", nomeArq);
+    FILE *arq = fopen(nomeArq, "r");
+    if(arq==NULL){printf("ERRO"); exit(1);}
+
+    while(fgets(linha, sizeof linha, arq)!= NULL){
+        nElem ++;
+    }
+    if(nElem ==0){printf("Arquivo vazio"); fclose(arq); return 7;}
+    fclose(arq);
+    arq = fopen(nomeArq, "r");
+
+    float *vet = (float*) malloc(nElem * sizeof(float));
+    if(vet==NULL){printf("Memoria Insuficiente"); exit(1);}
+
+    for(i = 0; i<nElem; i++){
+        if(fscanf(arq, "%f", &vet[i])!=1){
+            break;}
+        lidos ++;
+        media += vet[i];
+    }
+    fclose(arq);
+    media = media/lidos;
+    printf("%.2f", media);
+    return 0;
+}
+/*=============================================================*/
+/*EXERCICIO 6*/
