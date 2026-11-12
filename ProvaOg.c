@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/*==========================================================================*/
 typedef struct ponto {
     int x, y, z;
 } Ponto;
@@ -31,3 +29,4 @@ Ponto *novoPonto(int x, int y, int z){
     ponto->x = x; ponto->y = y; ponto->z = z;
     return ponto;
 }
+/*==========================================================================*/
