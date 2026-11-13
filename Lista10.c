@@ -124,3 +124,20 @@ int main(){
 }
 /*=============================================================*/
 /*EXERCICIO 6*/
+int main(){
+    char nome[] = "teste00.txt";
+    int i;
+    for(i=0; i<10; i++){
+        nome[5] = '0' + (i+1)/10;
+        nome[6] = '0' + (i+1)%10;
+        FILE *arq = fopen(nome, "w");
+
+        if(arq==NULL){printf("ERRO"); exit(-1);}
+        fprintf(arq, "Texto do arquivo %d", i+1);
+
+        fclose(arq);
+    }
+    return 0;
+}
+/*=============================================================*/
+/*EXERCICIO 7*/
