@@ -141,3 +141,47 @@ int main(){
 }
 /*=============================================================*/
 /*EXERCICIO 7*/
+int main(){
+    char *nomeArq = "numeros.txt";
+    int i, nElem=0;
+    char linha[256];
+
+
+    FILE *arq = fopen(nomeArq, "r");
+    if(arq==NULL){printf("ERRO"); exit(-1);}
+
+    while(fgets(linha, sizeof linha, arq)!=NULL){
+        nElem++; }
+    fclose(arq);
+
+    float *vet = (float*) malloc(nElem * sizeof(float));
+    if(vet==NULL){printf("Memoria Insuficiente"); exit(1);}
+
+    arq = fopen(nomeArq, "r");
+    if(arq==NULL){printf("ERRO"); exit(-1);}
+    for(i = 0; i<nElem; i++){
+        fscanf(arq, "%f", &vet[i]);
+
+        }
+    fclose(arq);
+    int fim;
+    for(fim = nElem-1; fim>0; fim--){
+        for(i=0; i<fim; i++){
+            if(vet[i]>vet[i+1]){
+                float temp = vet[i];
+                vet[i] = vet[i+1];
+                vet[i+1] = temp;
+            }
+        }
+    }
+    FILE *arqBin = fopen("numeros.dat", "wb");
+    if(arqBin == NULL){ printf("ERRO"); exit(-1);}
+
+    fwrite(vet, sizeof(float), nElem, arqBin);
+    fclose(arqBin);
+    
+    free(vet);
+    return 0;
+}
+/*=============================================================*/
+/*EXERCICIO 8*/
