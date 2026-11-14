@@ -295,21 +295,25 @@ int main(){
         fseek(arq, 0, SEEK_END);
         int tam = ftell(arq);
         int n = tam/sizeof(ALUNO);
-        fclose(arq);  
-    
+        fclose(arq);
+
         ALUNO rep;
         printf("Aluno a ser consultado(1 a %d): ", n);
         scanf("%d", &alt);
         alt --;
-        
+
         arq = fopen(alunos, "rb");
         if(arq==NULL){ printf("ERRO\n"); exit(-1); }
         fseek(arq, alt * sizeof(ALUNO), SEEK_SET);
         fread(&rep, sizeof(ALUNO), 1, arq);
         fclose(arq);
-        
+
         printf("Nome: %s\n", rep.nome);
-        printf("Nota 1: %.2f // Nota 2: %.2f\n", rep.nota1, rep.nota2);        
+        printf("Nota 1: %.2f // Nota 2: %.2f\n", rep.nota1, rep.nota2);
+        float media = (rep.nota1 + rep.nota2) / 2;
+        printf("Media: %.2f", media);
+        if(media > 6){printf(" - Aprovado\n\n");}
+        else{ printf(" - Reprovado\n\n");}
     }
     
     if(resp==4){
