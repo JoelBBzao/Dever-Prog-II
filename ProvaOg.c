@@ -30,3 +30,13 @@ Ponto *novoPonto(int x, int y, int z){
     return ponto;
 }
 /*==========================================================================*/
+void escreve_vetor(int *v, int n){
+    FILE *arq = fopen("saida.txt", "w");
+    if(arq==NULL){ printf("ERRO"); exit(-1); }
+
+    fprintf(arq, "%d\n", n);
+    for(int i=0; i<n; i++){
+        fprintf(arq, "%d ", v[i]);
+    }
+    fclose(arq);
+}
